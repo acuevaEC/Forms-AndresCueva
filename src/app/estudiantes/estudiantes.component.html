@@ -1,0 +1,95 @@
+<main class="container-fluid">
+  <p class="h4 text-center">Desafío Formularios - Andrés Cueva</p>
+  <section class="card mb-3 g-3">
+    <div class="card-body">
+      <h5 class="card-title">Form</h5>
+
+      <form [formGroup]="estudianteForm" (ngSubmit)="onsubmmit()" class="w-50">
+        <div class="row g-3">
+
+          <div class="col">
+            <input formControlName="nombre" 
+            type="text"  
+            [class.is-invalid]="nombreControl.invalid && nombreControl.touched"
+            class="form-control " 
+            placeholder="Nombre" 
+            aria-label="Nombre" 
+            >
+            <app-form-error-helper
+              *ngIf="nombreControl.invalid && nombreControl.touched" 
+              [formErrors]="nombreControl.errors">
+          </app-form-error-helper>
+                     
+          </div>
+          
+
+          <div class="col">
+            <input formControlName="apellido" 
+            type="text" class="form-control" 
+            [class.is-invalid]="apellidoControl.invalid && apellidoControl.touched"
+            placeholder="apellido" 
+            aria-label="apellido"
+            >
+            <app-form-error-helper 
+              *ngIf="apellidoControl.invalid && apellidoControl.touched"
+              [formErrors]="apellidoControl.errors">
+          </app-form-error-helper>
+          </div>
+
+
+          <div class="col-12">
+            <input formControlName="email" 
+            type="text" 
+            [class.is-invalid]="emailControl.invalid && emailControl.touched"
+            class="form-control" 
+            placeholder="Email" 
+            aria-label="Email"
+            >
+            <app-form-error-helper 
+              *ngIf="emailControl.invalid && emailControl.touched"
+              [formErrors]="emailControl.errors">
+          </app-form-error-helper>
+          </div>
+
+          <div class="col-12">
+            <input formControlName="emailConfirma" 
+            type="text" 
+            [class.is-invalid]="emailConfirmaControl.invalid && emailConfirmaControl.touched"
+
+            class="form-control" 
+            placeholder="Confirma Email" 
+            aria-label="Confirma Email"
+            >
+            <app-form-error-helper 
+            *ngIf="emailConfirmaControl.invalid && emailConfirmaControl.touched"
+            [formErrors]="emailConfirmaControl.errors">
+        </app-form-error-helper>
+          </div>
+
+
+        </div> 
+        <div class="col-12 mt-3">
+            <button class="btn btn-primary" type="submit">Guardar</button>
+        </div>
+      </form>
+     
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-body">
+      <h5 class="card-title">Listado</h5>
+      <pre>{{ estudiantes | json }}</pre>
+    </div>
+  </section>
+
+  <p>Errores del control de nombre</p>
+  
+  <pre>{{ nombreControl.errors | json }}</pre>
+  <pre>{{ apellidoControl.errors | json }}</pre>
+   <pre>{{ emailControl.errors | json }}</pre>
+   <pre>{{ emailConfirmaControl.errors | json }}</pre> 
+   
+</main>
+
+
